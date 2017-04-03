@@ -9,6 +9,7 @@ var aws = require('aws-sdk');
 var multerS3 = require('multer-s3')
 var config = require('./config')
 var platzigram = require('platzigramclient')
+var port = process.env.PORT || 3000;
 
 var client = platzigram.createClient(config.client)
 
@@ -57,8 +58,10 @@ app.get('/signup', function (req, res) {
 
 app.post('/signup', function (req, res) {
   var user = req.body;
-  client.saveUser(user, function (err, usr) {
+  var user = client.saveUser(user, function (err, usr) {
     if (err) return res.status(500).send(err.message);
+    else
+      console.log(user);
 
     res.redirect('/signin')
   })
