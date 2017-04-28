@@ -46,6 +46,6 @@ module.exports = function pictureCard(pic) {
     return false;
   }
 
-  el = render(pic);
+  if (!pic === null) el = render(pic);
   return el;
 }
