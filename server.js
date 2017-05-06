@@ -16,17 +16,17 @@ var client = platzigram.createClient(config.client)
 var s3 = new aws.S3({
   accessKeyId: config.aws.accessKey,
   secretAccessKey: config.aws.secretKey
-})
+});
 
 var storage = multerS3({
   s3: s3,
-  bucket: 'platzinobit',
+  bucket: 'platzi-kz',
   acl: 'public-read',
-  metadata: function (req, file, cb){
-    cb(null, { fieldName: file.fieldname })
+  metadata: function(req, file, cb){
+    cb(null,{ fieldName: file.fieldName});
   },
-  key: function (req, file, cb) {
-    cb(null, +Date.now() + '.' + ext(file.originalname))
+  key: function(req, file, cb){
+    cb(null, +Date.now() + '.' + ext(file.originalname));
   }
 })
 

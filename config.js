@@ -31,4 +31,4 @@ if (process.env.NODE_ENV !== 'production') {
   config.auth.facebook.callbackURL = 'http://platzigram.test:5050/auth/facebook/callback'
 }
 
-module.exports = config;
+module.exports = config
