@@ -20,15 +20,15 @@ var s3 = new aws.S3({
 
 var storage = multerS3({
   s3: s3,
-  bucket: 'platzi-kz',
+  bucket: 'platzigram',
   acl: 'public-read',
-  metadata: function(req, file, cb){
-    cb(null,{ fieldName: file.fieldName});
+  metadata: function (req, file, cb) {
+    cb(null, { fieldName: file.fieldname })
   },
-  key: function(req, file, cb){
-    cb(null, +Date.now() + '.' + ext(file.originalname));
+  key: function (req, file, cb) {
+    cb(null, +Date.now() + '.' + ext(file.originalname))
   }
-})
+});
 
 var upload = multer({ storage: storage }).single('picture');
 
@@ -143,9 +143,8 @@ app.post('/api/pictures', ensureAuth, function (req, res) {
 
         res.send(`File uploaded: ${req.file.location}`);
     })
-    
   })
-})
+});
 
 app.get('/api/user/:username', (req, res) => {
   var username = req.params.username;
